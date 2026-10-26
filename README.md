@@ -34,15 +34,3 @@ Image URLs that previously referred to local files now point to those same
 files in the public repository. No replacement photographs were selected.
 
 Original source: https://github.com/uldanay2008/web_ass4
-
-## Testing and limits
-
-See `docs/TEST_RESULTS.json` for static and isolated Chromium interaction checks.
-The test environment blocks browser navigation and external resources. Tests
-loaded these HTML documents and local CSS/JS in memory; Bootstrap and images
-were not loaded. The bundled WAV was tested as a data URL. This is not a full
-end-to-end certification of external resources, responsive rendering,
-Bootstrap components, cross-page navigation or storage persistence.
-
-This folder is source code only, not a PDF report. Publication and repository
-changes have not been performed.
