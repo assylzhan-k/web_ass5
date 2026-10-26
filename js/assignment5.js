@@ -1,19 +1,14 @@
-/*
- * Assignment 5 additions for the ORIGINAL web_ass4 website.
- * Load AFTER js/script.js. The original script and stylesheet stay unchanged.
- * No dependencies; no requests containing form data; no password storage.
- */
+
 (() => {
     'use strict';
 
     const scriptUrl = document.currentScript.src;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    // Reusable helper: behavior belongs in JS, visual rules in assignment5.css.
     function animate(element) {
         if (!element || reducedMotion.matches) return;
         element.classList.remove('as5-pop');
-        void element.offsetWidth; // Restart the animation after another click.
+        void element.offsetWidth; 
         element.classList.add('as5-pop');
         element.addEventListener('animationend', () => {
             element.classList.remove('as5-pop');
@@ -28,7 +23,6 @@
         return button;
     }
 
-    // 1. Keyboard events + switch: only handle keys INSIDE the existing menu.
     function initKeyboardNavigation() {
         const menu = document.getElementById('mainNav');
         if (!menu) return;
@@ -55,15 +49,12 @@
                     nextIndex = links.length - 1;
                     break;
                 default:
-                    return; // Tab and Enter keep their normal browser behavior.
+                    return;
             }
             event.preventDefault();
             links[nextIndex].focus();
         });
     }
-
-    // 2. DOM selection, textContent, attributes, object methods, arrays and loops.
-    // Added under the EXISTING welcome paragraph, without replacing its content.
     function initRating() {
         const introduction = document.querySelector('.about-section > p');
         if (!introduction || document.getElementById('as5-rating')) return;
@@ -92,13 +83,12 @@
         group.className = 'as5-rating-stars';
         group.setAttribute('role', 'group');
         group.setAttribute('aria-label', 'Rate Winx Studio from 1 to 5');
-
-        // An explicit for loop creates the collection of buttons dynamically.
+        
         const scores = [];
         for (let value = 1; value <= rating.maximum; value++) {
             scores.push(value);
         }
-        // forEach is a higher-order function: the arrow function is its callback.
+        
         scores.forEach((value) => {
             const star = makeButton('☆', 'as5-rating-star');
             star.dataset.rating = String(value);
@@ -125,8 +115,6 @@
             });
         });
     }
-
-    // 3. Sound: one Audio object, restarted instead of layering multiple tracks.
     function initSound() {
         const tools = document.querySelector('footer .interactive-tools');
         if (!tools || document.getElementById('as5-play-sound')) return;
@@ -152,7 +140,7 @@
             try {
                 await audio.play();
             } catch (error) {
-                // A second click may interrupt a previous pending play().
+                
                 if (request !== requestNumber || error.name === 'AbortError') return;
                 status.textContent = 'Sound is unavailable. Check the audio file and try again.';
             }
@@ -160,8 +148,6 @@
         window.addEventListener('pagehide', () => audio.pause());
     }
 
-    // 4. Optional multi-step mode for the ORIGINAL contact form.
-    // Existing fields stay in the same DOM positions. Only visibility changes.
     function initContactSteps() {
         const form = document.getElementById('contact-form');
         if (!form || document.getElementById('as5-form-tools')) return;
@@ -216,7 +202,6 @@
         const wizard = {
             enabled: false,
             currentStep: 0,
-            // onChange is an explicit callback supplied by the caller.
             goTo(index, onChange) {
                 if (index < 0 || index >= steps.length) return;
                 this.currentStep = index;
@@ -251,7 +236,6 @@
             animate(steps[index].elements[0]);
         }
 
-        // Same rules and error elements as Assignment 4; no form cloning.
         function validateFields(fieldIds) {
             let firstInvalid = null;
             fieldIds.forEach((id) => {
@@ -276,7 +260,7 @@
                 invalid.focus();
                 return;
             }
-            // Passing showStep (not showStep()) demonstrates a callback.
+           
             wizard.goTo(wizard.currentStep + 1, showStep);
         }
 
@@ -301,8 +285,6 @@
             wizard.goTo(0, renderStep);
         });
 
-        // Capture phase runs before the ORIGINAL submit validation handler.
-        // Enter on an early step means Next, not premature submission.
         form.addEventListener('submit', (event) => {
             if (!wizard.enabled) return;
             if (wizard.currentStep < steps.length - 1) {
@@ -311,7 +293,7 @@
                 nextStep();
                 return;
             }
-            // Reveal an earlier invalid field before the old handler focuses it.
+           
             const invalid = validateFields(ids);
             if (invalid) {
                 const index = steps.findIndex((step) => step.fields.includes(invalid.id));
@@ -319,12 +301,11 @@
             }
         }, true);
 
-        // The existing listener still performs final validation and reports that
-        // this is a demo. We only add an event-triggered success animation.
+       
         form.addEventListener('submit', () => {
             if (status.textContent && !form.querySelector('[aria-invalid="true"]')) animate(status);
         });
-        renderStep(0); // Full original form remains visible on initial load.
+        renderStep(0);
     }
 
     function init() {
