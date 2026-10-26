@@ -1,5 +1,4 @@
 'use strict';
-// Task 1: validate fields and show a separate message for each error.
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (event) => {
@@ -23,7 +22,7 @@ if (contactForm) {
         else document.getElementById('contact-status').textContent = 'Validation successful! This demo does not send your message or store your password.';
     });
 }
-// Task 2: each answer opens and closes independently.
+
 document.querySelectorAll('.faq-question').forEach((button) => {
     button.addEventListener('click', () => {
         const expanded = button.getAttribute('aria-expanded') !== 'true';
@@ -34,7 +33,7 @@ document.querySelectorAll('.faq-question').forEach((button) => {
         answer.inert = !expanded;
     });
 });
-// Task 3: native dialog supports keyboard focus and Escape.
+
 const dialog = document.getElementById('subscribe-dialog');
 if (dialog) {
     document.getElementById('open-subscribe').addEventListener('click', () => dialog.showModal());
@@ -54,7 +53,6 @@ if (dialog) {
         if (!valid) email.focus();
     });
 }
-// Task 4: cycle through readable pastel backgrounds.
 const colors = ['#f4d8df', '#e4d9f5', '#d8ece5', '#c47b7b'];
 let colorIndex = 0;
 const backgroundButton = document.getElementById('change-background');
@@ -62,7 +60,7 @@ if (backgroundButton) backgroundButton.addEventListener('click', () => {
     document.body.style.backgroundColor = colors[colorIndex];
     colorIndex = (colorIndex + 1) % colors.length;
 });
-// Task 5: show the visitor's local time and refresh every second.
+
 const dateTime = document.getElementById('current-datetime');
 function updateDateTime() {
     const now = new Date();
@@ -73,7 +71,7 @@ function updateDateTime() {
     });
 }
 if (dateTime) { updateDateTime(); setInterval(updateDateTime, 1000); }
-// Extra features: category filters and favorites saved in this browser.
+
 const catalogItems = [...document.querySelectorAll('.catalog-item')];
 if (catalogItems.length) {
     const storageKey = 'winx-studio-favorites';
