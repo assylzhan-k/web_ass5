@@ -1,22 +1,5 @@
 # Winx Studio — Assignment 5
 
-Ready-to-open project based on the original `uldanay2008/web_ass4` website.
-The original layout, palette, typography, page sections and Assignment 4
-behaviour are retained. Assignment 5 is connected on every page already.
-
-## Open
-
-Extract the whole ZIP into a new folder and open `index.html` in a modern
-browser. You can also open this folder in VS Code and use Live Server.
-Do not merge the folder with either previous archive. No setup scripts,
-package installation or build step are needed.
-
-**Internet is required.** Bootstrap 5.3.3 and all images are loaded remotely.
-The original local Home/Team images now use their public GitHub URLs, so
-there is no old `images` folder to copy. The archive contains the page code,
-local styles, scripts and the sound file, not offline copies of photographs.
-External resources remain subject to availability at their original sources.
-
 ## Pages
 
 - `index.html`: original home page plus a five-star rating.
