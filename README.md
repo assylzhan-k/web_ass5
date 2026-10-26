@@ -1,5 +1,7 @@
 # Winx Studio — Assignment 5
 
+## Link: https://assylzhan-k.github.io/web_ass5/
+
 ## Pages
 
 - `index.html`: original home page plus a five-star rating.
@@ -31,6 +33,4 @@ The original CSS selectors, declaration values and cascade order are retained.
 Source formatting is normalised. The `Other Products` heading's original
 inline colour is moved to `.as5-products-title` with the same value.
 Image URLs that previously referred to local files now point to those same
-files in the public repository. No replacement photographs were selected.
-
-Original source: https://github.com/uldanay2008/web_ass4
+files in the public repository.
